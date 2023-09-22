@@ -726,13 +726,8 @@ void CCommon::GetInternetIp2(wstring& ip_address, wstring& ip_location, bool ipv
     if (GetURL((ipv6 ? L"https://ipv6.ip.mir6.com/api_json.php?ip=myip&token=mir6.com" : L"https://ipv4.ip.mir6.com/api_json.php?ip=myip&token=mir6.com"), raw_string, true, user_agent))
     {
         // 解析获取的 JSON 字符串
-        json data = json::parse(raw_string);
-        ip_address = data["myip"].get<wstring>();
-        wstring country = data["data"]["country"].get<wstring>();
-        wstring province = data["data"]["province"].get<wstring>();
-        wstring city = data["data"]["city"].get<wstring>();
-        wstring isp = data["data"]["isp"].get<wstring>();
-        ip_location = country + province + city + isp;
+        ip_address = GetJsonValueSimple(raw_string, L"myip");
+        ip_location = GetJsonValueSimple(raw_string, L"data.city")
     }
     else
     {
