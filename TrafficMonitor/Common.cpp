@@ -723,10 +723,10 @@ void CCommon::GetInternetIp2(wstring& ip_address, wstring& ip_location, bool ipv
     wstring raw_string;
     wstring user_agent{ L"TrafficMonitor/" };
     user_agent += VERSION;
-    if (GetURL((ipv6 ? L"https://v6.yinghualuo.cn/bejson" : L"https://v4.yinghualuo.cn/bejson"), raw_string, true, user_agent))
+    if (GetURL((ipv6 ? L"https://ipv6.ip.mir6.com/api_json.php?ip=myip&token=mir6.com" : L"https://ipv4.ip.mir6.com/api_json.php?ip=myip&token=mir6.com"), raw_string, true, user_agent))
     {
         //解析获取的json字符串
-        ip_address = GetJsonValueSimple(raw_string, L"ip");
+        ip_address = GetJsonValueSimple(raw_string, L"myip");
         ip_location = GetJsonValueSimple(raw_string, L"location");
 
     }
