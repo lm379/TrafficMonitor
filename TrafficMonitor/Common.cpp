@@ -727,12 +727,7 @@ void CCommon::GetInternetIp2(wstring& ip_address, wstring& ip_location, bool ipv
     {
         //解析获取的json字符串
         ip_address = GetJsonValueSimple(raw_string, L"myip");
-        wstring country = GetJsonValueSimple(raw_string, L"data.country");
-        wstring province = GetJsonValueSimple(raw_string, L"data.province");
-        wstring city = GetJsonValueSimple(raw_string, L"data.city");
-        wstring isp = GetJsonValueSimple(raw_string, L"data.isp");
-        ip_location = country + province + city + isp;
-
+        ip_location = GetJsonValueSimple(raw_string, L"data.city");
     }
     else
     {
